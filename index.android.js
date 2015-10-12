@@ -41,14 +41,10 @@ var ClassBeacon = React.createClass({
     return (
       <View>
       <ToolbarAndroid
-        actions={toolbarActions}
-        navIcon={require('image!ic_menu_black_24dp')}
-        onActionSelected={this._onActionSelected}
-        onIconClicked={() => this.setState({actionText: 'Icon clicked'})}
         style={styles.toolbar}
-        subtitle={this.state.actionText}
-        title="Toolbar" />
-      <Text>{this.state.actionText}</Text>
+        title="Class Beacon"
+        titleColor="#ffffff" />
+      <Text>Hello World</Text>
       </View>
     );
   },
@@ -59,15 +55,15 @@ var ClassBeacon = React.createClass({
   },
 });
 
-var toolbarActions = [
-  {title: 'Create', icon: require('image!ic_create_black_48dp'), show: 'always'},
-  {title: 'Filter'},
-  {title: 'Settings', icon: require('image!ic_settings_black_48dp'), show: 'always'},
-];
-
 var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
   toolbar: {
-    backgroundColor: '#e9eaed',
+    backgroundColor: '#2196F3',
     height: 56,
   },
 });
