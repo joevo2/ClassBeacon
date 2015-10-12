@@ -20,7 +20,20 @@ var {
   Text,
   View,
   ToolbarAndroid,
+  Navigator,
 } = React;
+
+var Home = function () {
+  return (
+    <View>
+    <ToolbarAndroid
+      style={styles.toolbar}
+      title="Class Beacon"
+      titleColor="#ffffff" />
+      <Text>Testing</Text>
+    </View>
+  );
+}
 
 var ClassBeacon = React.createClass({
   statics: {
@@ -38,20 +51,13 @@ var ClassBeacon = React.createClass({
     };
   },
   render: function() {
+    var initialRoute = {name: 'featured', title: 'Featured'};
     return (
-      <View>
-      <ToolbarAndroid
-        style={styles.toolbar}
-        title="Class Beacon"
-        titleColor="#ffffff" />
-      <Text>Hello World</Text>
-      </View>
+      <Navigator
+        initialRoute={initialRoute}
+        configureScene={() => Navigator.SceneConfigs.FadeAndroid}
+        renderScene={Home} />
     );
-  },
-  _onActionSelected: function(position) {
-    this.setState({
-      actionText: 'Selected ' + toolbarActions[position].title,
-    });
   },
 });
 
