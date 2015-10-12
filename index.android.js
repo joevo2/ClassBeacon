@@ -13,7 +13,6 @@ Parse.initialize(
   'YOUR_PARSE_JAVASCRIPT_KEY'
 );
 
-
 var {
   AppRegistry,
   Image,
@@ -24,30 +23,53 @@ var {
 } = React;
 
 var ClassBeacon = React.createClass({
+  statics: {
+    title: '<ToolbarAndroid>',
+    description: 'Examples of using the Android toolbar.'
+  },
+  getInitialState: function() {
+    return {
+      actionText: 'Example app with toolbar component',
+      toolbarSwitch: false,
+      colorProps: {
+        titleColor: '#3b5998',
+        subtitleColor: '#6a7180',
+      },
+    };
+  },
   render: function() {
     return (
-      <View style={styles.container}>
-        <ToolbarAndroid
-          title="AwesomeApp"
-          style={styles.toolbar}>
-        </ToolbarAndroid>
-        <Text>Hello</Text>
+      <View>
+      <ToolbarAndroid
+        actions={toolbarActions}
+        navIcon={require('image!ic_menu_black_24dp')}
+        onActionSelected={this._onActionSelected}
+        onIconClicked={() => this.setState({actionText: 'Icon clicked'})}
+        style={styles.toolbar}
+        subtitle={this.state.actionText}
+        title="Toolbar" />
+      <Text>{this.state.actionText}</Text>
       </View>
     );
-  }
+  },
+  _onActionSelected: function(position) {
+    this.setState({
+      actionText: 'Selected ' + toolbarActions[position].title,
+    });
+  },
 });
 
+var toolbarActions = [
+  {title: 'Create', icon: require('image!ic_create_black_48dp'), show: 'always'},
+  {title: 'Filter'},
+  {title: 'Settings', icon: require('image!ic_settings_black_48dp'), show: 'always'},
+];
+
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
   toolbar: {
+    backgroundColor: '#e9eaed',
     height: 56,
-    backgroundColor: 'red',
-  }
+  },
 });
 
 AppRegistry.registerComponent('ClassBeacon', () => ClassBeacon);
